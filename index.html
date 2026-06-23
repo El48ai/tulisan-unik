@@ -3,33 +3,40 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <meta name="theme-color" content="#121212">
-    <title>Font Pro+ Ultimate IDN</title>
+    <meta name="theme-color" content="#0d0d1a">
+    <title>Font Pro+ Magic IDN</title>
     <style>
-        /* Desain UI Premium - Dark Mode */
+        /* Desain UI Premium - Dark Mode dengan Tema Sihir */
         :root {
-            --bg: #121212; --card: #1e1e1e; --text: #ffffff;
-            --primary: #E42528; --primary-hover: #b81d20;
+            --bg: #0d0d1a; --card: #1a1a2e; --text: #ffffff;
+            --primary: #8a2be2; --primary-hover: #9b4dca;
         }
         
         body {
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
             background-color: var(--bg); color: var(--text);
             margin: 0; padding: 20px; display: flex; flex-direction: column; align-items: center;
+            /* Efek background bintang ajaib */
+            background-image: radial-gradient(circle at 50% 0%, #2a1b3d 0%, transparent 50%);
         }
 
-        /* Scrollbar Keren */
         ::-webkit-scrollbar { width: 6px; }
         ::-webkit-scrollbar-track { background: var(--bg); }
         ::-webkit-scrollbar-thumb { background: #444; border-radius: 10px; }
         ::-webkit-scrollbar-thumb:hover { background: var(--primary); }
 
         .header { text-align: center; margin-bottom: 25px; }
+        
+        /* Animasi Megik di Judul Aplikasi */
         .header h1 { 
-            margin: 0; font-size: 32px; 
-            background: linear-gradient(45deg, #00C9FF, #92FE9D); 
+            margin: 0; font-size: 36px; 
+            background: linear-gradient(45deg, #ff00de, #00C9FF, #ff00de); 
+            background-size: 200% auto;
             -webkit-background-clip: text; -webkit-text-fill-color: transparent; 
+            animation: shine 3s linear infinite;
         }
+        @keyframes shine { to { background-position: 200% center; } }
+        
         .header p { color: #aaaaaa; font-size: 14px; margin-top: 5px; }
 
         .input-container { 
@@ -39,42 +46,45 @@
         
         textarea {
             width: 100%; height: 90px; padding: 15px; border-radius: 15px;
-            background: rgba(30, 30, 30, 0.95); color: var(--text);
-            border: 1px solid #444; font-size: 16px; resize: none;
+            background: rgba(26, 26, 46, 0.95); color: var(--text);
+            border: 2px solid #333; font-size: 16px; resize: none;
             box-sizing: border-box; backdrop-filter: blur(10px);
             box-shadow: 0 8px 32px rgba(0,0,0,0.5); transition: 0.3s;
         }
-        textarea:focus { outline: none; border-color: #00C9FF; box-shadow: 0 8px 32px rgba(0, 201, 255, 0.2); }
+        textarea:focus { 
+            outline: none; border-color: #ff00de; 
+            box-shadow: 0 0 20px rgba(255, 0, 222, 0.3); 
+        }
 
         .results { width: 100%; max-width: 500px; display: flex; flex-direction: column; gap: 15px; padding-bottom: 50px; }
 
         .card {
             background: var(--card); border-radius: 15px; padding: 15px 20px;
             display: flex; justify-content: space-between; align-items: center;
-            border: 1px solid #2a2a2a; box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+            border: 1px solid #2a2a2a; box-shadow: 0 4px 10px rgba(0,0,0,0.3);
             transition: transform 0.2s, border-color 0.2s;
         }
-        .card:hover { transform: translateY(-3px); border-color: #555; }
+        .card:hover { transform: translateY(-3px); border-color: #ff00de; }
         
         .font-info { max-width: 72%; }
         .font-style-name { 
-            font-size: 11px; color: #00C9FF; margin-bottom: 6px; 
+            font-size: 11px; color: #ff00de; margin-bottom: 6px; 
             text-transform: uppercase; letter-spacing: 1.5px; font-weight: bold;
         }
         .font-result { font-size: 18px; word-break: break-word; line-height: 1.4; }
         
         .btn-copy {
-            background: var(--primary); color: white; border: none;
+            background: linear-gradient(45deg, #8a2be2, #ff00de); color: white; border: none;
             padding: 10px 15px; border-radius: 10px; font-weight: bold;
             font-size: 13px; cursor: pointer; transition: 0.3s;
         }
-        .btn-copy:hover { background: var(--primary-hover); transform: scale(1.05); }
+        .btn-copy:hover { transform: scale(1.1); box-shadow: 0 0 15px rgba(255,0,222,0.5); }
 
         #toast {
-            visibility: hidden; min-width: 250px; background-color: #2ecc71; color: #fff;
+            visibility: hidden; min-width: 250px; background-color: #ff00de; color: #fff;
             text-align: center; border-radius: 30px; padding: 16px; position: fixed;
             z-index: 1000; left: 50%; bottom: 30px; transform: translateX(-50%);
-            box-shadow: 0 4px 15px rgba(0,0,0,0.3); font-weight: bold;
+            box-shadow: 0 4px 20px rgba(255,0,222,0.4); font-weight: bold;
         }
         #toast.show { visibility: visible; animation: fadein 0.5s, fadeout 0.5s 2.5s; }
         @keyframes fadein { from {bottom: 0; opacity: 0;} to {bottom: 30px; opacity: 1;} }
@@ -84,66 +94,68 @@
 <body>
 
     <div class="header">
-        <h1>Ultimate Font 🎨</h1>
-        <p>Teks Biru, Terbalik, Coret, & 10+ Gaya Unik!</p>
+        <h1>Magic Font ✨</h1>
+        <p>Aplikasi Text Generator Estetik & Sihir</p>
     </div>
 
     <div class="input-container">
-        <textarea id="inputText" placeholder="Ketik komentarmu di sini..." oninput="generateFonts()"></textarea>
+        <textarea id="inputText" placeholder="Ketik kalimat ajaibmu di sini..." oninput="generateFonts()"></textarea>
     </div>
 
     <div class="results" id="resultsContainer"></div>
-    <div id="toast">Berhasil disalin! ✅</div>
+    <div id="toast">Mantra Berhasil Disalin! 🪄</div>
 
     <script>
-        // KAMUS UNICODE LENGKAP
-        const dictBold = {'a':'𝗮','b':'𝗯','c':'𝗰','d':'𝗱','e':'𝗲','f':'𝗳','g':'𝗴','h':'𝗵','i':'𝗶','j':'𝗷','k':'𝗸','l':'𝗹','m':'𝗺','n':'𝗻','o':'𝗼','p':'𝗽','q':'𝗾','r':'𝗿','s':'𝘀','t':'𝘁','u':'𝘂','v':'𝘃','w':'𝘄','x':'𝘅','y':'𝘆','z':'𝘇','A':'𝗔','B':'𝗕','C':'𝗖','D':'𝗗','E':'𝗘','F':'𝗙','G':'𝗚','H':'𝗛','I':'𝗜','J':'𝗝','K':'𝗞','L':'𝗟','M':'𝗠','N':'𝗡','O':'𝗢','P':'𝗣','Q':'𝗤','R':'𝗥','S':'𝗦','T':'𝗧','U':'𝗨','V':'𝗩','W':'𝗪','X':'𝗫','Y':'𝗬','Z':'𝗭','0':'𝟬','1':'𝟭','2':'𝟮','3':'𝟯','4':'𝟰','5':'𝟱','6':'𝟲','7':'𝟳','8':'𝟴','9':'𝟵'};
-        const dictItalic = {'a':'𝘢','b':'𝘣','c':'𝘤','d':'𝘥','e':'𝘦','f':'𝘧','g':'𝘨','h':'𝘩','i':'𝘪','j':'𝘫','k':'𝘬','l':'𝘭','m':'𝘮','n':'𝘯','o':'𝘰','p':'𝘱','q':'𝘲','r':'𝘳','s':'𝘴','t':'𝘵','u':'𝘶','v':'𝘷','w':'𝘸','x':'𝘹','y':'𝘺','z':'𝘻','A':'𝘈','B':'𝘉','C':'𝘊','D':'𝘋','E':'𝘌','F':'𝘍','G':'𝘎','H':'𝘏','I':'𝘐','J':'𝘑','K':'𝘒','L':'𝘓','M':'𝘔','N':'𝘕','O':'𝘖','P':'𝘗','Q':'𝘘','R':'𝘙','S':'𝘚','T':'𝘛','U':'𝘜','V':'𝘝','W':'𝘞','X':'𝘟','Y':'𝘠','Z':'𝘡'};
-        const dictScript = {'a':'𝒶','b':'𝒷','c':'𝒸','d':'𝒹','e':'ℯ','f':'𝒻','g':'ℊ','h':'𝒽','i':'𝒾','j':'𝒿','k':'𝓀','l':'𝓁','m':'𝓂','n':'𝓃','o':'ℴ','p':'𝓅','q':'𝓆','r':'𝓇','s':'𝓈','t':'𝓉','u':'𝓊','v':'𝓋','w':'𝓌','x':'𝓍','y':'𝓎','z':'𝓏','A':'𝒜','B':'ℬ','C':'𝒞','D':'𝒟','E':'ℰ','F':'ℱ','G':'𝒢','H':'ℋ','I':'ℐ','J':'𝒥','K':'𝒦','L':'ℒ','M':'ℳ','N':'𝒩','O':'𝒪','P':'𝒫','Q':'𝒬','R':'ℛ','S':'𝒮','T':'𝒯','U':'𝒰','V':'𝒱','W':'𝒲','X':'𝒳','Y':'𝒴','Z':'𝒵'};
-        const dictGothic = {'a':'𝔞','b':'𝔟','c':'𝔠','d':'𝔡','e':'𝔢','f':'𝔣','g':'𝔤','h':'𝔥','i':'𝔦','j':'𝔧','k':'𝔨','l':'𝔩','m':'𝔪','n':'𝔫','o':'𝔬','p':'𝔭','q':'𝔮','r':'𝔯','s':'𝔰','t':'𝔱','u':'𝔲','v':'𝔳','w':'𝔴','x':'𝔵','y':'𝔶','z':'𝔷','A':'𝔄','B':'𝔅','C':'ℭ','D':'𝔇','E':'𝔈','F':'𝔉','G':'𝔊','H':'ℌ','I':'ℑ','J':'𝔍','K':'𝔎','L':'𝔏','M':'𝔐','N':'𝔑','O':'𝔒','P':'𝔓','Q':'𝔔','R':'ℜ','S':'𝔖','T':'𝔗','U':'𝔘','V':'𝔙','W':'𝔚','X':'𝔛','Y':'𝔜','Z':'ℨ'};
-        const dictSmallCaps = {'a':'ᴀ','b':'ʙ','c':'ᴄ','d':'ᴅ','e':'ᴇ','f':'ꜰ','g':'ɢ','h':'ʜ','i':'ɪ','j':'ᴊ','k':'ᴋ','l':'ʟ','m':'ᴍ','n':'ɴ','o':'ᴏ','p':'ᴘ','q':'Q','r':'ʀ','s':'ꜱ','t':'ᴛ','u':'ᴜ','v':'ᴠ','w':'ᴡ','x':'x','y':'ʏ','z':'ᴢ'};
-        const dictUpsideDown = {'a':'ɐ','b':'q','c':'ɔ','d':'p','e':'ǝ','f':'ɟ','g':'ƃ','h':'ɥ','i':'ı','j':'ɾ','k':'ʞ','l':'l','m':'ɯ','n':'u','o':'o','p':'d','q':'b','r':'ɹ','s':'s','t':'ʇ','u':'n','v':'ʌ','w':'ʍ','x':'x','y':'ʎ','z':'z','A':'∀','B':'𐐒','C':'Ɔ','D':'◖','E':'Ǝ','F':'Ⅎ','G':'⅁','H':'H','I':'I','J':'ſ','K':'ʞ','L':'˥','M':'W','N':'N','O':'O','P':'Ԁ','Q':'Ό','R':'ᴚ','S':'S','T':'⊥','U':'∩','V':'Λ','W':'M','X':'X','Y':'⅄','Z':'Z','?':'¿','!':'¡','.':'˙',',':"'"};
+        const dictBold = {'a':'𝗮','b':'𝗯','c':'𝗰','d':'𝗱','e':'𝗲','f':'𝗳','g':'𝗴','h':'𝗵','i':'𝗶','j':'𝗷','k':'𝗸','l':'𝗹','m':'𝗺','n':'𝗻','o':'𝗼','p':'𝗽','q':'𝗾','r':'𝗿','s':'𝘀','t':'𝘁','u':'𝘂','v':'𝘃','w':'𝘄','x':'𝘅','y':'𝘆','z':'𝘇'};
         const dictBlue = {'a':'🇦 ','b':'🇧 ','c':'🇨 ','d':'🇩 ','e':'🇪 ','f':'🇫 ','g':'🇬 ','h':'🇭 ','i':'🇮 ','j':'🇯 ','k':'🇰 ','l':'🇱 ','m':'🇲 ','n':'🇳 ','o':'🇴 ','p':'🇵 ','q':'🇶 ','r':'🇷 ','s':'🇸 ','t':'🇹 ','u':'🇺 ','v':'🇻 ','w':'🇼 ','x':'🇽 ','y':'🇾 ','z':'🇿 '};
+        const dictScript = {'a':'𝒶','b':'𝒷','c':'𝒸','d':'𝒹','e':'ℯ','f':'𝒻','g':'ℊ','h':'𝒽','i':'𝒾','j':'𝒿','k':'𝓀','l':'𝓁','m':'𝓂','n':'𝓃','o':'ℴ','p':'𝓅','q':'𝓆','r':'𝓇','s':'𝓈','t':'𝓉','u':'𝓊','v':'𝓋','w':'𝓌','x':'𝓍','y':'𝓎','z':'𝓏'};
 
-        // Fungsi Pemetaan Teks Biasa
+        // Karakter Sihir Glitch (Zalgo)
+        const zalgoUp = ['\u030d', '\u030e', '\u0304', '\u0305', '\u033f', '\u0311', '\u0306', '\u0310', '\u0352', '\u0351'];
+        const zalgoDown = ['\u0316', '\u0317', '\u0318', '\u0319', '\u031c', '\u031d', '\u031e', '\u031f', '\u0320', '\u0324'];
+        const zalgoMid = ['\u0315', '\u031b', '\u0340', '\u0341', '\u0358', '\u0321', '\u0322', '\u0327'];
+
         function mapText(text, dict) {
             let result = '';
-            for(let i=0; i<text.length; i++) {
-                result += dict[text[i]] || text[i];
-            }
+            for(let i=0; i<text.length; i++) result += dict[text[i].toLowerCase()] || text[i];
             return result;
         }
 
-        // Fungsi Khusus Kombinasi Karakter (Coret & Garis Bawah)
-        function applyCombining(text, charCode) {
+        // Fungsi Teks Glitch (Aura Sihir Gelap)
+        function generateGlitch(text) {
             let result = '';
             for(let i=0; i<text.length; i++) {
-                result += (text[i] !== ' ') ? text[i] + charCode : ' ';
+                result += text[i];
+                if(text[i] !== ' ') {
+                    let numUp = Math.floor(Math.random() * 2);
+                    for(let j=0; j<numUp; j++) result += zalgoUp[Math.floor(Math.random() * zalgoUp.length)];
+                    let numMid = Math.floor(Math.random() * 1);
+                    for(let j=0; j<numMid; j++) result += zalgoMid[Math.floor(Math.random() * zalgoMid.length)];
+                    let numDown = Math.floor(Math.random() * 2);
+                    for(let j=0; j<numDown; j++) result += zalgoDown[Math.floor(Math.random() * zalgoDown.length)];
+                }
             }
             return result;
         }
 
-        // Daftar Logika untuk 11 Gaya Unik
+        // Daftar Logika Gaya Baru
         const styles = [
-            { name: "🟦 Huruf Biru (Khusus HP)", generate: t => mapText(t.toLowerCase(), dictBlue) },
-            { name: "✒️ Latin Cursive", generate: t => mapText(t, dictScript) },
-            { name: "🪓 Coret Tengah", generate: t => applyCombining(t, '\u0336') },
-            { name: "📏 Garis Bawah", generate: t => applyCombining(t, '\u0332') },
-            { name: "🙃 Teks Terbalik", generate: t => t.split('').map(c => dictUpsideDown[c] || dictUpsideDown[c.toLowerCase()] || c).reverse().join('') },
-            { name: "🦇 Gotik Aesthetic", generate: t => mapText(t, dictGothic) },
-            { name: "🔠 Small Caps", generate: t => mapText(t, dictSmallCaps) },
-            { name: "𝗕 Bold (Tebal)", generate: t => mapText(t, dictBold) },
-            { name: "𝘐 Italic (Miring)", generate: t => mapText(t, dictItalic) }
+            { name: "🔮 Aura Sihir (Glitch)", generate: t => generateGlitch(t) },
+            { name: "🪄 Mantra Peri (Sparkle)", generate: t => `(∩^o^)⊃━☆ﾟ.*･｡ﾟ  ${mapText(t, dictScript)} ✨` },
+            { name: "⭐ Spasi Bintang", generate: t => t.split('').join(' ⭐ ') },
+            { name: "🟦 Teks Biru Magic", generate: t => mapText(t, dictBlue) },
+            { name: "🦇 Gotik", generate: t => mapText(t, {'a':'𝔞','b':'𝔟','c':'𝔠','d':'𝔡','e':'𝔢','f':'𝔣','g':'𝔤','h':'𝔥','i':'𝔦','j':'𝔧','k':'𝔨','l':'𝔩','m':'𝔪','n':'𝔫','o':'𝔬','p':'𝔭','q':'𝔮','r':'𝔯','s':'𝔰','t':'𝔱','u':'𝔲','v':'𝔳','w':'𝔴','x':'𝔵','y':'𝔶','z':'𝔷'}) },
+            { name: "𝗕 Tebal", generate: t => mapText(t, dictBold) }
         ];
 
-        generateFonts(); // Render saat pertama kali dimuat
+        generateFonts(); 
 
         function generateFonts() {
             const inputText = document.getElementById('inputText').value;
             const container = document.getElementById('resultsContainer');
             container.innerHTML = ''; 
 
-            const textToProcess = inputText.trim() === '' ? 'Aesthetic' : inputText;
+            const textToProcess = inputText.trim() === '' ? 'Magic' : inputText;
 
             styles.forEach(style => {
                 const resultText = style.generate(textToProcess);
