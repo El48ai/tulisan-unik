@@ -2,185 +2,150 @@
 <html lang="id">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <meta name="theme-color" content="#0d0d1a">
-    <title>Font Pro+ Magic IDN</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Generator Teks Sulap ✨</title>
     <style>
-        /* Desain UI Premium - Dark Mode dengan Tema Sihir */
-        :root {
-            --bg: #0d0d1a; --card: #1a1a2e; --text: #ffffff;
-            --primary: #8a2be2; --primary-hover: #9b4dca;
-        }
-        
         body {
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            background-color: var(--bg); color: var(--text);
-            margin: 0; padding: 20px; display: flex; flex-direction: column; align-items: center;
-            /* Efek background bintang ajaib */
-            background-image: radial-gradient(circle at 50% 0%, #2a1b3d 0%, transparent 50%);
+            background-color: #1a1a2e;
+            color: #fff;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding: 30px;
         }
-
-        ::-webkit-scrollbar { width: 6px; }
-        ::-webkit-scrollbar-track { background: var(--bg); }
-        ::-webkit-scrollbar-thumb { background: #444; border-radius: 10px; }
-        ::-webkit-scrollbar-thumb:hover { background: var(--primary); }
-
-        .header { text-align: center; margin-bottom: 25px; }
-        
-        /* Animasi Megik di Judul Aplikasi */
-        .header h1 { 
-            margin: 0; font-size: 36px; 
-            background: linear-gradient(45deg, #ff00de, #00C9FF, #ff00de); 
-            background-size: 200% auto;
-            -webkit-background-clip: text; -webkit-text-fill-color: transparent; 
-            animation: shine 3s linear infinite;
+        h1 {
+            color: #e94560;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.5);
         }
-        @keyframes shine { to { background-position: 200% center; } }
-        
-        .header p { color: #aaaaaa; font-size: 14px; margin-top: 5px; }
-
-        .input-container { 
-            width: 100%; max-width: 500px; position: sticky; top: 10px; 
-            z-index: 100; margin-bottom: 20px;
+        input {
+            width: 80%;
+            max-width: 400px;
+            padding: 15px;
+            font-size: 18px;
+            border-radius: 8px;
+            border: 2px solid #e94560;
+            background-color: #16213e;
+            color: white;
+            margin-bottom: 30px;
+            text-align: center;
         }
-        
-        textarea {
-            width: 100%; height: 90px; padding: 15px; border-radius: 15px;
-            background: rgba(26, 26, 46, 0.95); color: var(--text);
-            border: 2px solid #333; font-size: 16px; resize: none;
-            box-sizing: border-box; backdrop-filter: blur(10px);
-            box-shadow: 0 8px 32px rgba(0,0,0,0.5); transition: 0.3s;
-        }
-        textarea:focus { 
-            outline: none; border-color: #ff00de; 
-            box-shadow: 0 0 20px rgba(255, 0, 222, 0.3); 
-        }
-
-        .results { width: 100%; max-width: 500px; display: flex; flex-direction: column; gap: 15px; padding-bottom: 50px; }
-
         .card {
-            background: var(--card); border-radius: 15px; padding: 15px 20px;
-            display: flex; justify-content: space-between; align-items: center;
-            border: 1px solid #2a2a2a; box-shadow: 0 4px 10px rgba(0,0,0,0.3);
-            transition: transform 0.2s, border-color 0.2s;
+            background-color: #0f3460;
+            width: 80%;
+            max-width: 500px;
+            padding: 20px;
+            border-radius: 10px;
+            margin-bottom: 15px;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.3);
+            text-align: center;
         }
-        .card:hover { transform: translateY(-3px); border-color: #ff00de; }
-        
-        .font-info { max-width: 72%; }
-        .font-style-name { 
-            font-size: 11px; color: #ff00de; margin-bottom: 6px; 
-            text-transform: uppercase; letter-spacing: 1.5px; font-weight: bold;
+        .card h3 {
+            margin-top: 0;
+            color: #f1b111;
+            font-size: 16px;
         }
-        .font-result { font-size: 18px; word-break: break-word; line-height: 1.4; }
-        
-        .btn-copy {
-            background: linear-gradient(45deg, #8a2be2, #ff00de); color: white; border: none;
-            padding: 10px 15px; border-radius: 10px; font-weight: bold;
-            font-size: 13px; cursor: pointer; transition: 0.3s;
+        .output {
+            font-size: 22px;
+            margin: 15px 0;
+            word-break: break-all;
         }
-        .btn-copy:hover { transform: scale(1.1); box-shadow: 0 0 15px rgba(255,0,222,0.5); }
-
-        #toast {
-            visibility: hidden; min-width: 250px; background-color: #ff00de; color: #fff;
-            text-align: center; border-radius: 30px; padding: 16px; position: fixed;
-            z-index: 1000; left: 50%; bottom: 30px; transform: translateX(-50%);
-            box-shadow: 0 4px 20px rgba(255,0,222,0.4); font-weight: bold;
+        button {
+            background-color: #e94560;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 5px;
+            cursor: pointer;
+            font-weight: bold;
         }
-        #toast.show { visibility: visible; animation: fadein 0.5s, fadeout 0.5s 2.5s; }
-        @keyframes fadein { from {bottom: 0; opacity: 0;} to {bottom: 30px; opacity: 1;} }
-        @keyframes fadeout { from {bottom: 30px; opacity: 1;} to {bottom: 0; opacity: 0;} }
+        button:hover {
+            background-color: #d1304b;
+        }
     </style>
 </head>
 <body>
 
-    <div class="header">
-        <h1>Magic Font ✨</h1>
-        <p>Aplikasi Text Generator Estetik & Sihir</p>
+    <h1>🪄 Teks Sulap Generator 🪄</h1>
+    <p>Ketik kata atau namamu di bawah ini:</p>
+    <input type="text" id="inputText" placeholder="Contoh: Pesulap Hebat" oninput="ubahTeks()">
+
+    <!-- Tema 1 -->
+    <div class="card">
+        <h3>1. Tema Sulap Misterius (Gothic)</h3>
+        <div class="output" id="out1">🔮✨ ... ✨🔮</div>
+        <button onclick="salin('out1')">Copy</button>
     </div>
 
-    <div class="input-container">
-        <textarea id="inputText" placeholder="Ketik kalimat ajaibmu di sini..." oninput="generateFonts()"></textarea>
+    <!-- Tema 2 -->
+    <div class="card">
+        <h3>2. Tema Sihir Berkilau (Elegan)</h3>
+        <div class="output" id="out2">🌟🕊️ ... 🕊️🌟</div>
+        <button onclick="salin('out2')">Copy</button>
     </div>
 
-    <div class="results" id="resultsContainer"></div>
-    <div id="toast">Mantra Berhasil Disalin! 🪄</div>
+    <!-- Tema 3 -->
+    <div class="card">
+        <h3>3. Tema Ilusi (Glitch)</h3>
+        <div class="output" id="out3">🎩🎭 ... 🎭🎩</div>
+        <button onclick="salin('out3')">Copy</button>
+    </div>
 
     <script>
-        const dictBold = {'a':'𝗮','b':'𝗯','c':'𝗰','d':'𝗱','e':'𝗲','f':'𝗳','g':'𝗴','h':'𝗵','i':'𝗶','j':'𝗷','k':'𝗸','l':'𝗹','m':'𝗺','n':'𝗻','o':'𝗼','p':'𝗽','q':'𝗾','r':'𝗿','s':'𝘀','t':'𝘁','u':'𝘂','v':'𝘃','w':'𝘄','x':'𝘅','y':'𝘆','z':'𝘇'};
-        const dictBlue = {'a':'🇦 ','b':'🇧 ','c':'🇨 ','d':'🇩 ','e':'🇪 ','f':'🇫 ','g':'🇬 ','h':'🇭 ','i':'🇮 ','j':'🇯 ','k':'🇰 ','l':'🇱 ','m':'🇲 ','n':'🇳 ','o':'🇴 ','p':'🇵 ','q':'🇶 ','r':'🇷 ','s':'🇸 ','t':'🇹 ','u':'🇺 ','v':'🇻 ','w':'🇼 ','x':'🇽 ','y':'🇾 ','z':'🇿 '};
-        const dictScript = {'a':'𝒶','b':'𝒷','c':'𝒸','d':'𝒹','e':'ℯ','f':'𝒻','g':'ℊ','h':'𝒽','i':'𝒾','j':'𝒿','k':'𝓀','l':'𝓁','m':'𝓂','n':'𝓃','o':'ℴ','p':'𝓅','q':'𝓆','r':'𝓇','s':'𝓈','t':'𝓉','u':'𝓊','v':'𝓋','w':'𝓌','x':'𝓍','y':'𝓎','z':'𝓏'};
+        // Kamus Huruf Normal
+        const normal = Array.from("abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ");
+        
+        // Kamus Huruf Sulap
+        const gothic = Array.from("𝖆𝖇𝖈𝖉𝖊𝖋𝖌𝖍𝖎𝖏𝖐𝖑𝖒𝖓𝖔𝖕𝖖𝖗𝖘𝖙𝖚𝖛𝖜𝖝𝖞𝖟𝕬𝕭𝕮𝕯𝕰𝕱𝕲𝕳𝕴𝕵𝕶𝕷𝕸𝕹𝕺𝕻𝕼𝕽𝕾𝕿𝖀𝖁𝖂𝖃𝖄𝖅");
+        const elegan = Array.from("𝒶𝒷𝒸𝒹𝑒𝒻𝑔𝒽𝒾𝒿𝓀𝓁𝓂𝓃𝑜𝓅𝓆𝓇𝓈𝓉𝓊𝓋𝓌𝓍𝓎𝓏𝒜ℬ𝒞𝒟ℰℱ𝒢ℋℐ𝒥𝒦ℒℳ𝒩𝒪𝒫𝒬ℛ𝒮𝒯𝒰𝒱𝒲𝒳𝒴𝒵");
 
-        // Karakter Sihir Glitch (Zalgo)
-        const zalgoUp = ['\u030d', '\u030e', '\u0304', '\u0305', '\u033f', '\u0311', '\u0306', '\u0310', '\u0352', '\u0351'];
-        const zalgoDown = ['\u0316', '\u0317', '\u0318', '\u0319', '\u031c', '\u031d', '\u031e', '\u031f', '\u0320', '\u0324'];
-        const zalgoMid = ['\u0315', '\u031b', '\u0340', '\u0341', '\u0358', '\u0321', '\u0322', '\u0327'];
-
-        function mapText(text, dict) {
-            let result = '';
-            for(let i=0; i<text.length; i++) result += dict[text[i].toLowerCase()] || text[i];
-            return result;
-        }
-
-        // Fungsi Teks Glitch (Aura Sihir Gelap)
-        function generateGlitch(text) {
-            let result = '';
-            for(let i=0; i<text.length; i++) {
-                result += text[i];
-                if(text[i] !== ' ') {
-                    let numUp = Math.floor(Math.random() * 2);
-                    for(let j=0; j<numUp; j++) result += zalgoUp[Math.floor(Math.random() * zalgoUp.length)];
-                    let numMid = Math.floor(Math.random() * 1);
-                    for(let j=0; j<numMid; j++) result += zalgoMid[Math.floor(Math.random() * zalgoMid.length)];
-                    let numDown = Math.floor(Math.random() * 2);
-                    for(let j=0; j<numDown; j++) result += zalgoDown[Math.floor(Math.random() * zalgoDown.length)];
+        // Fungsi mengubah teks biasa menjadi gaya font khusus
+        function konversiFont(teks, fontTujuan) {
+            let hasil = "";
+            for (let char of teks) {
+                let index = normal.indexOf(char);
+                if (index !== -1) {
+                    hasil += fontTujuan[index]; // Ubah jika huruf terdeteksi
+                } else {
+                    hasil += char; // Biarkan jika spasi atau angka
                 }
             }
-            return result;
+            return hasil;
         }
 
-        // Daftar Logika Gaya Baru
-        const styles = [
-            { name: "🔮 Aura Sihir (Glitch)", generate: t => generateGlitch(t) },
-            { name: "🪄 Mantra Peri (Sparkle)", generate: t => `(∩^o^)⊃━☆ﾟ.*･｡ﾟ  ${mapText(t, dictScript)} ✨` },
-            { name: "⭐ Spasi Bintang", generate: t => t.split('').join(' ⭐ ') },
-            { name: "🟦 Teks Biru Magic", generate: t => mapText(t, dictBlue) },
-            { name: "🦇 Gotik", generate: t => mapText(t, {'a':'𝔞','b':'𝔟','c':'𝔠','d':'𝔡','e':'𝔢','f':'𝔣','g':'𝔤','h':'𝔥','i':'𝔦','j':'𝔧','k':'𝔨','l':'𝔩','m':'𝔪','n':'𝔫','o':'𝔬','p':'𝔭','q':'𝔮','r':'𝔯','s':'𝔰','t':'𝔱','u':'𝔲','v':'𝔳','w':'𝔴','x':'𝔵','y':'𝔶','z':'𝔷'}) },
-            { name: "𝗕 Tebal", generate: t => mapText(t, dictBold) }
-        ];
+        // Fungsi membuat teks ilusi coret (Glitch/Zalgo ringan)
+        function buatGlitch(teks) {
+            return Array.from(teks).map(huruf => huruf + '\u0337').join('');
+        }
 
-        generateFonts(); 
+        // Fungsi utama yang dipanggil saat mengetik
+        function ubahTeks() {
+            let teksOri = document.getElementById("inputText").value;
+            
+            if (teksOri.trim() === "") {
+                document.getElementById("out1").innerText = "🔮✨ ... ✨🔮";
+                document.getElementById("out2").innerText = "🌟🕊️ ... 🕊️🌟";
+                document.getElementById("out3").innerText = "🎩🎭 ... 🎭🎩";
+                return;
+            }
 
-        function generateFonts() {
-            const inputText = document.getElementById('inputText').value;
-            const container = document.getElementById('resultsContainer');
-            container.innerHTML = ''; 
+            // Memproses teks dengan font dan emoji
+            let teksGothic = "🔮✨ " + konversiFont(teksOri, gothic) + " ✨🔮";
+            let teksElegan = "🌟🕊️ " + konversiFont(teksOri, elegan) + " 🕊️🌟";
+            let teksGlitch = "🎩🎭 " + buatGlitch(teksOri) + " 🎭🎩";
 
-            const textToProcess = inputText.trim() === '' ? 'Magic' : inputText;
+            // Menampilkan hasil
+            document.getElementById("out1").innerText = teksGothic;
+            document.getElementById("out2").innerText = teksElegan;
+            document.getElementById("out3").innerText = teksGlitch;
+        }
 
-            styles.forEach(style => {
-                const resultText = style.generate(textToProcess);
-                const safeText = resultText.replace(/'/g, "\\'").replace(/"/g, '&quot;');
-                
-                const card = document.createElement('div');
-                card.className = 'card';
-                card.innerHTML = `
-                    <div class="font-info">
-                        <div class="font-style-name">${style.name}</div>
-                        <div class="font-result">${resultText}</div>
-                    </div>
-                    <button class="btn-copy" onclick="copyToClipboard('${safeText}')">Copy</button>
-                `;
-                container.appendChild(card);
+        // Fungsi untuk tombol Copy
+        function salin(id) {
+            let teks = document.getElementById(id).innerText;
+            navigator.clipboard.writeText(teks).then(() => {
+                alert("Berhasil disalin: " + teks);
             });
-        }
-
-        function copyToClipboard(text) {
-            const finalText = text.replace(/&quot;/g, '"');
-            navigator.clipboard.writeText(finalText).then(() => {
-                const toast = document.getElementById("toast");
-                toast.className = "show";
-                setTimeout(() => { toast.className = toast.className.replace("show", ""); }, 2500);
-            }).catch(err => console.error('Gagal menyalin: ', err));
         }
     </script>
 </body>
