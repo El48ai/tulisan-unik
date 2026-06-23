@@ -1,0 +1,217 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <meta name="theme-color" content="#121212">
+    <title>Font Pro IDN</title>
+    <style>
+        /* Desain UI Premium - Dark Mode */
+        :root {
+            --bg: #121212;
+            --card: #1e1e1e;
+            --text: #ffffff;
+            --primary: #E42528; /* Warna khas IDN */
+            --primary-hover: #b81d20;
+        }
+        
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: var(--bg);
+            color: var(--text);
+            margin: 0; 
+            padding: 20px;
+            display: flex; 
+            flex-direction: column; 
+            align-items: center;
+        }
+
+        .header { text-align: center; margin-bottom: 25px; }
+        .header h1 { 
+            margin: 0; 
+            font-size: 32px; 
+            background: linear-gradient(45deg, #ff4b2b, #ff416c); 
+            -webkit-background-clip: text; 
+            -webkit-text-fill-color: transparent; 
+        }
+        .header p { color: #aaaaaa; font-size: 14px; margin-top: 5px; }
+
+        .input-container { 
+            width: 100%; 
+            max-width: 500px; 
+            position: sticky; 
+            top: 10px; 
+            z-index: 100; 
+            margin-bottom: 20px;
+        }
+        
+        textarea {
+            width: 100%; 
+            height: 90px; 
+            padding: 15px; 
+            border-radius: 15px;
+            background: rgba(30, 30, 30, 0.9); 
+            color: var(--text);
+            border: 1px solid #333; 
+            font-size: 16px; 
+            resize: none;
+            box-sizing: border-box; 
+            backdrop-filter: blur(10px);
+            box-shadow: 0 8px 32px rgba(0,0,0,0.5);
+            transition: border 0.3s, box-shadow 0.3s;
+        }
+        textarea:focus { 
+            outline: none; 
+            border: 1px solid var(--primary); 
+            box-shadow: 0 8px 32px rgba(228, 37, 40, 0.2);
+        }
+
+        .results { 
+            width: 100%; 
+            max-width: 500px; 
+            display: flex; 
+            flex-direction: column; 
+            gap: 15px; 
+            padding-bottom: 50px;
+        }
+
+        .card {
+            background: var(--card); 
+            border-radius: 15px; 
+            padding: 15px 20px;
+            display: flex; 
+            justify-content: space-between; 
+            align-items: center;
+            border: 1px solid #2a2a2a; 
+            box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+            transition: transform 0.2s, border-color 0.2s;
+        }
+        .card:hover { transform: translateY(-3px); border-color: #555; }
+        
+        .font-info { max-width: 75%; }
+        .font-style-name { 
+            font-size: 11px; 
+            color: #888; 
+            margin-bottom: 6px; 
+            text-transform: uppercase; 
+            letter-spacing: 1.5px;
+            font-weight: bold;
+        }
+        .font-result { font-size: 18px; word-break: break-word; line-height: 1.4; }
+        
+        .btn-copy {
+            background: var(--primary); 
+            color: white; 
+            border: none;
+            padding: 10px 18px; 
+            border-radius: 10px; 
+            font-weight: bold;
+            font-size: 14px;
+            cursor: pointer; 
+            transition: 0.3s;
+            box-shadow: 0 4px 15px rgba(228, 37, 40, 0.3);
+        }
+        .btn-copy:hover { background: var(--primary-hover); transform: scale(1.05); }
+
+        /* Desain Notifikasi Keren (Toast) */
+        #toast {
+            visibility: hidden; 
+            min-width: 250px; 
+            background-color: #2ecc71; 
+            color: #fff;
+            text-align: center; 
+            border-radius: 30px; 
+            padding: 16px; 
+            position: fixed;
+            z-index: 1000; 
+            left: 50%; 
+            bottom: 30px; 
+            transform: translateX(-50%);
+            box-shadow: 0 4px 15px rgba(0,0,0,0.3);
+            font-weight: bold;
+            font-size: 15px;
+        }
+        #toast.show { visibility: visible; animation: fadein 0.5s, fadeout 0.5s 2.5s; }
+        
+        @keyframes fadein { from {bottom: 0; opacity: 0;} to {bottom: 30px; opacity: 1;} }
+        @keyframes fadeout { from {bottom: 30px; opacity: 1;} to {bottom: 0; opacity: 0;} }
+    </style>
+</head>
+<body>
+
+    <div class="header">
+        <h1>Font Pro+ ✨</h1>
+        <p>Generator Teks Premium untuk IDN</p>
+    </div>
+
+    <div class="input-container">
+        <textarea id="inputText" placeholder="Ketik komentarmu di sini..." oninput="generateFonts()"></textarea>
+    </div>
+
+    <div class="results" id="resultsContainer">
+        <!-- Hasil konversi font akan muncul otomatis di sini -->
+    </div>
+
+    <div id="toast">Berhasil disalin! ✅</div>
+
+    <script>
+        // Kamus Lengkap: Huruf Kecil, Besar, dan Angka
+        const dictionaries = {
+            "Tebal (Bold)": {'a':'𝗮','b':'𝗯','c':'𝗰','d':'𝗱','e':'𝗲','f':'𝗳','g':'𝗴','h':'𝗵','i':'𝗶','j':'𝗷','k':'𝗸','l':'𝗹','m':'𝗺','n':'𝗻','o':'𝗼','p':'𝗽','q':'𝗾','r':'𝗿','s':'𝘀','t':'𝘁','u':'𝘂','v':'𝘃','w':'𝘄','x':'𝘅','y':'𝘆','z':'𝘇', 'A':'𝗔','B':'𝗕','C':'𝗖','D':'𝗗','E':'𝗘','F':'𝗙','G':'𝗚','H':'𝗛','I':'𝗜','J':'𝗝','K':'𝗞','L':'𝗟','M':'𝗠','N':'𝗡','O':'𝗢','P':'𝗣','Q':'𝗤','R':'𝗥','S':'𝗦','T':'𝗧','U':'𝗨','V':'𝗩','W':'𝗪','X':'𝗫','Y':'𝗬','Z':'𝗭', '0':'𝟬','1':'𝟭','2':'𝟮','3':'𝟯','4':'𝟰','5':'𝟱','6':'𝟲','7':'𝟳','8':'𝟴','9':'𝟵'},
+            "Miring (Italic)": {'a':'𝘢','b':'𝘣','c':'𝘤','d':'𝘥','e':'𝘦','f':'𝘧','g':'𝘨','h':'𝘩','i':'𝘪','j':'𝘫','k':'𝘬','l':'𝘭','m':'𝘮','n':'𝘯','o':'𝘰','p':'𝘱','q':'𝘲','r':'𝘳','s':'𝘴','t':'𝘵','u':'𝘶','v':'𝘷','w':'𝘸','x':'𝘹','y':'𝘺','z':'𝘻', 'A':'𝘈','B':'𝘉','C':'𝘊','D':'𝘋','E':'𝘌','F':'𝘍','G':'𝘎','H':'𝘏','I':'𝘐','J':'𝘑','K':'𝘒','L':'𝘓','M':'𝘔','N':'𝘕','O':'𝘖','P':'𝘗','Q':'𝘘','R':'𝘙','S':'𝘚','T':'𝘛','U':'𝘜','V':'𝘝','W':'𝘞','X':'𝘟','Y':'𝘠','Z':'𝘡'},
+            "Gotik Aesthetic": {'a':'𝔞','b':'𝔟','c':'𝔠','d':'𝔡','e':'𝔢','f':'𝔣','g':'𝔤','h':'𝔥','i':'𝔦','j':'𝔧','k':'𝔨','l':'𝔩','m':'𝔪','n':'𝔫','o':'𝔬','p':'𝔭','q':'𝔮','r':'𝔯','s':'𝔰','t':'𝔱','u':'𝔲','v':'𝔳','w':'𝔴','x':'𝔵','y':'𝔶','z':'𝔷', 'A':'𝔄','B':'𝔅','C':'ℭ','D':'𝔇','E':'𝔈','F':'𝔉','G':'𝔊','H':'ℌ','I':'ℑ','J':'𝔍','K':'𝔎','L':'𝔏','M':'𝔐','N':'𝔑','O':'𝔒','P':'𝔓','Q':'𝔔','R':'ℜ','S':'𝔖','T':'𝔗','U':'𝔘','V':'𝔙','W':'𝔚','X':'𝔛','Y':'𝔜','Z':'ℨ'},
+            "Gelembung (Bubble)": {'a':'ⓐ','b':'ⓑ','c':'ⓒ','d':'ⓓ','e':'ⓔ','f':'ⓕ','g':'ⓖ','h':'ⓗ','i':'ⓘ','j':'ⓙ','k':'ⓚ','l':'ⓛ','m':'ⓜ','n':'ⓝ','o':'ⓞ','p':'ⓟ','q':'ⓠ','r':'ⓡ','s':'ⓢ','t':'ⓣ','u':'ⓤ','v':'ⓥ','w':'ⓦ','x':'ⓧ','y':'ⓨ','z':'ⓩ', 'A':'Ⓐ','B':'Ⓑ','C':'Ⓒ','D':'Ⓓ','E':'Ⓔ','F':'Ⓕ','G':'Ⓖ','H':'Ⓗ','I':'Ⓘ','J':'Ⓙ','K':'Ⓚ','L':'Ⓛ','M':'Ⓜ','N':'Ⓝ','O':'Ⓞ','P':'Ⓟ','Q':'Ⓠ','R':'Ⓡ','S':'Ⓢ','T':'Ⓣ','U':'Ⓤ','V':'Ⓥ','W':'Ⓦ','X':'Ⓧ','Y':'Ⓨ','Z':'Ⓩ', '0':'⓪','1':'①','2':'②','3':'③','4':'④','5':'⑤','6':'⑥','7':'⑦','8':'⑧','9':'⑨'},
+            "Kotak (Square)": {'a':'🄰','b':'🄱','c':'🄲','d':'🄳','e':'🄴','f':'🄵','g':'🄶','h':'🄷','i':'🄸','j':'🄹','k':'🄺','l':'🄻','m':'🄼','n':'🄽','o':'🄾','p':'🄿','q':'🅀','r':'🅁','s':'🅂','t':'🅃','u':'🅄','v':'🅅','w':'🅆','x':'🅇','y':'🅈','z':'🅉', 'A':'🄰','B':'🄱','C':'🄲','D':'🄳','E':'🄴','F':'🄵','G':'🄶','H':'🄷','I':'🄸','J':'🄹','K':'🄺','L':'🄻','M':'🄼','N':'🄽','O':'🄾','P':'🄿','Q':'🅀','R':'🅁','S':'🅂','T':'🅃','U':'🅄','V':'🅅','W':'🅆','X':'🅇','Y':'🅈','Z':'🅉'}
+        };
+
+        // Render awal saat kosong
+        generateFonts();
+
+        function generateFonts() {
+            const inputText = document.getElementById('inputText').value;
+            const container = document.getElementById('resultsContainer');
+            container.innerHTML = ''; 
+
+            const textToProcess = inputText.trim() === '' ? 'Ketik komentarmu...' : inputText;
+
+            for (const [fontName, dict] of Object.entries(dictionaries)) {
+                let resultText = '';
+                for (let i = 0; i < textToProcess.length; i++) {
+                    const char = textToProcess[i];
+                    resultText += dict[char] || char; 
+                }
+
+                // Ciptakan visual card-nya
+                const card = document.createElement('div');
+                card.className = 'card';
+                
+                // Gunakan backslash untuk escape kutipan agar tidak error saat disalin
+                const safeText = resultText.replace(/'/g, "\\'").replace(/"/g, '&quot;');
+
+                card.innerHTML = `
+                    <div class="font-info">
+                        <div class="font-style-name">${fontName}</div>
+                        <div class="font-result">${resultText}</div>
+                    </div>
+                    <button class="btn-copy" onclick="copyToClipboard('${safeText}')">Copy</button>
+                `;
+                container.appendChild(card);
+            }
+        }
+
+        // Fungsi Salin & Munculkan Notifikasi
+        function copyToClipboard(text) {
+            // Memulihkan karakter kutipan
+            const finalText = text.replace(/&quot;/g, '"');
+            
+            navigator.clipboard.writeText(finalText).then(() => {
+                const toast = document.getElementById("toast");
+                toast.className = "show";
+                setTimeout(() => { toast.className = toast.className.replace("show", ""); }, 3000);
+            }).catch(err => {
+                console.error('Gagal menyalin teks: ', err);
+            });
+        }
+    </script>
+</body>
+</html>
